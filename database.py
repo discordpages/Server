@@ -1,11 +1,7 @@
 import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 import sys
-import configparser
 from datetime import datetime
-
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 class DataBase:
   """
@@ -133,9 +129,3 @@ class DataBase:
     """
     self.cur.close()
     self.con.close()
-
-
-db = DataBase()
-db.connect(config['DEFAULT']['host'], config['DEFAULT']['username'], config['DEFAULT']['password'])
-db.create_table()
-db.close_connection()

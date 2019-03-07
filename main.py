@@ -1,8 +1,13 @@
-from __future__ import print_function;
-from flask import Flask
+import importlib
+import configparser
 
-app = Flask(__name__)
+importlib.import_module('database.py')
+importlib.import_module('server.py')
 
-@app.route("/")
-def hello():
-    return "Hello World";
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+db = DataBase()
+db.connect(config['DEFAULT']['host'], config['DEFAULT']['username'], config['DEFAULT']['password'])
+db.create_table()
+db.close()
