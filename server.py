@@ -7,6 +7,7 @@ app = Flask(__name__)
 def authorize():
     data = request.args
     print(data)
+    return str(data)
 
 @app.route("/")
 def home():
